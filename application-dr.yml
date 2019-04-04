@@ -17,3 +17,18 @@ eureka:
   client:
     service-url:
       defaultZone:  http://localhost:7001/eureka/,http://localhost:7002/eureka/,http://localhost:7003/eureka/
+
+---
+server:
+  port: 8203
+
+spring:
+  profiles: test
+  application:
+    name : config.client-test
+
+# Eureka相关配置
+eureka:
+  client:
+    service-url:
+      defaultZone:  http://localhost:7001/eureka/

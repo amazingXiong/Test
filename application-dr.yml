@@ -1,39 +1,19 @@
-# 本注册中心的端口使用7002
+spring:
+  profiles:
+    active: dev
+
+
+---
 server:
-  port: 9527
+  port: 8201
 
-
+spring:
+  profiles: dev
+  application:
+    name : config.client
 
 # Eureka相关配置
 eureka:
   client:
     service-url:
       defaultZone:  http://localhost:7001/eureka/,http://localhost:7002/eureka/,http://localhost:7003/eureka/
-  instance:
-    # 超链接是否显示Ip
-    preferIpAddress : true
-    # 主机名修改
-    instance-id: gataway9527
-
-logging:
-  level:
-    root: info
-    com.daxiong: debug
-#  config: classpath:config/logback-boot.xml
-  pattern:
-    console: '%date{yyyy-MM-dd HH:mm:ss} %highlight(%clr(${LOG_LEVEL_PATTERN:-%5p})) | %boldYellow([%15.15t])| %clr((%-40.40logger{39}:%line\)){cyan}-  %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}'
-
-
-
-
-zuul:
-  # 添加统一前缀.
-  prefix: /daxiong
-  # 忽略这个名称,也就是说microservicecloud-dept这个微服务不能用microservicecloud-dept访问了
-#  ignored-services: microservicecloud-dept
-  # 忽略全部. 全部微服务都不能用服务名访问了.
-  ignored-services: "*"
-  routes:
-    # key-value的形式,microservicecloud-dept这个微服务也可以用dept来访问,来达到脱敏的效果
-    zzx.serviceId: microservicecloud-dept
-    zzx.path: /dept/**
